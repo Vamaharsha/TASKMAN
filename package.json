@@ -1,0 +1,14 @@
+{
+  "name": "taskflow",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=production npm --prefix server start",
+    "build": "npm --prefix client run build",
+    "dev": "npm --prefix server run dev",
+    "install:all": "npm install --prefix client && npm install --prefix server"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
