@@ -224,10 +224,10 @@ td span {
   margin: 92px 0 16px;
   color: var(--text);
   font-family: 'Syne', sans-serif;
-  font-size: clamp(32px, 5vw, 64px);
+  font-size: clamp(28px, 4.5vw, 56px);
   font-weight: 800;
   line-height: 1.1;
-  word-wrap: break-word;
+  overflow-wrap: normal;
 }
 
 .auth-copy p {

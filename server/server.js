@@ -413,6 +413,11 @@ app.post(
     const email = normalizeEmail(req.body.email);
     const password = String(req.body.password || '');
     const role = String(req.body.role || '').toUpperCase();
+    const companyId = String(req.body.companyId || '').trim();
+
+    if (!companyId) {
+      return res.status(400).json({ message: 'Enter your Company ID.' });
+    }
 
     if (!name || name.length < 2) {
       return res.status(400).json({ message: 'Enter a full name.' });

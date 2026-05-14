@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Navigate, Route, Routes, NavLink } from 'react-router-dom';
+import { Navigate, Route, Routes, NavLink, useLocation } from 'react-router-dom';
 import {
   Activity,
   AlertTriangle,
@@ -123,7 +123,8 @@ function AuthPage({ onAuthSuccess }) {
   const [form, setForm] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    companyId: ''
   });
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
@@ -156,7 +157,8 @@ function AuthPage({ onAuthSuccess }) {
           role,
           name: form.name,
           email: form.email,
-          password: form.password
+          password: form.password,
+          companyId: form.companyId
         }
       });
       onAuthSuccess({ token: data.token, user: data.user });
@@ -169,13 +171,13 @@ function AuthPage({ onAuthSuccess }) {
 
   return (
     <main className="auth-screen">
-      <section className="auth-shell" aria-label="TaskFlow authentication">
+      <section className="auth-shell" aria-label="TASKMAN authentication">
         <div className="auth-copy">
           <div className="brand-lockup">
-            <span className="brand-mark">
-              <BriefcaseBusiness size={20} />
+            <span className="brand-mark" style={{ background: 'transparent', padding: 0 }}>
+              <img src="/logo-transparent.png" alt="TASKMAN Icon" style={{ height: '32px', width: 'auto' }} />
             </span>
-            <span>TaskFlow</span>
+            <span>TASKMAN</span>
           </div>
           <h1>Team delivery, controlled from one sharp workspace.</h1>
           <p>
@@ -245,15 +247,27 @@ function AuthPage({ onAuthSuccess }) {
           </div>
 
           {mode === 'signup' && (
-            <label className="input-field">
-              <span>Full name</span>
-              <input
-                value={form.name}
-                onChange={(event) => updateForm('name', event.target.value)}
-                placeholder="Enter name"
-                autoComplete="name"
-              />
-            </label>
+            <>
+              <label className="input-field">
+                <span>Company ID</span>
+                <input
+                  value={form.companyId}
+                  onChange={(event) => updateForm('companyId', event.target.value)}
+                  placeholder="Enter Company ID"
+                  required={mode === 'signup'}
+                />
+              </label>
+              <label className="input-field">
+                <span>Full name</span>
+                <input
+                  value={form.name}
+                  onChange={(event) => updateForm('name', event.target.value)}
+                  placeholder="Enter name"
+                  autoComplete="name"
+                  required={mode === 'signup'}
+                />
+              </label>
+            </>
           )}
 
           <label className="input-field">
@@ -353,6 +367,7 @@ function App() {
 
 function Workspace({ auth, onLogout }) {
   const { token, user } = auth;
+  const location = useLocation();
   const [projects, setProjects] = useState([]);
   const [members, setMembers] = useState([]);
   const [dashboard, setDashboard] = useState(null);
@@ -581,33 +596,42 @@ function Workspace({ auth, onLogout }) {
               <ListChecks size={17} /> Tasks
             </NavLink>
           </nav>
-          <div className="rail-note">
-            <p>{isAdmin ? 'Portfolio owner' : 'Focused queue'}</p>
-            <span>
-              {isAdmin
-                ? 'Project planning, staffing, and delivery governance.'
-                : 'Assigned work, current deadlines, and clean progress signals.'}
-            </span>
-          </div>
+
         </aside>
 
         <section className="workspace-content">
-          <div className="page-title" id="dashboard">
-            <div>
-              <p className="eyebrow">{isAdmin ? 'Command center' : 'My work'}</p>
-              <h1>{isAdmin ? 'Project operations dashboard' : 'Assigned workspace'}</h1>
-            </div>
-            <div className="title-actions">
-              <div className="search-box">
-                <Search size={17} />
-                <input
-                  value={search}
-                  onChange={(event) => setSearch(event.target.value)}
-                  placeholder="Search projects, tasks, people"
-                />
+          {(() => {
+            const path = location.pathname;
+            let eyebrow = isAdmin ? 'Command center' : 'My work';
+            let title = isAdmin ? 'Project operations dashboard' : 'Assigned workspace';
+            
+            if (path.includes('/projects')) {
+              eyebrow = 'Management';
+              title = 'Project Portfolio';
+            } else if (path.includes('/tasks')) {
+              eyebrow = 'Delivery';
+              title = 'Task Management';
+            }
+
+            return (
+              <div className="page-title">
+                <div>
+                  <p className="eyebrow">{eyebrow}</p>
+                  <h1>{title}</h1>
+                </div>
+                <div className="title-actions">
+                  <div className="search-box">
+                    <Search size={17} />
+                    <input
+                      value={search}
+                      onChange={(event) => setSearch(event.target.value)}
+                      placeholder="Search projects, tasks, people"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            );
+          })()}
 
           {(error || notice) && (
             <div className={`notice ${error ? 'error' : 'success'}`} role="status">
@@ -737,10 +761,10 @@ function Topbar({ user, onLogout }) {
   return (
     <header className="topbar">
       <div className="brand-lockup compact">
-        <span className="brand-mark">
-          <BriefcaseBusiness size={18} />
+        <span className="brand-mark" style={{ background: 'transparent', padding: 0 }}>
+          <img src="/logo-transparent.png" alt="TASKMAN Icon" style={{ height: '24px', width: 'auto' }} />
         </span>
-        <span>TaskFlow</span>
+        <span>TASKMAN</span>
       </div>
       <div className="topbar-right">
         <span className="user-email">{user.email}</span>
