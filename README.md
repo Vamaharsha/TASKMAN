@@ -1,93 +1,59 @@
-# TaskFlow - Team Task Manager
+# TASKMAN (Tasking Manager)
 
-TaskFlow is a full-stack team task manager for project creation, employee assignment, task status tracking, and role-based dashboards.
+TASKMAN is a premium, full-stack project governance and team management platform. Designed for high-performance delivery, it provides a command-layer view of project health, employee staffing, and real-time task tracking.
 
-## Features
+## 🚀 Key Features
 
-- Admin and Employee signup/login from one dynamic auth panel
-- Duplicate email, wrong password, invalid role, and form validation messages
-- Admin project creation with name, type, priority, deadline, status, and assigned members
-- Admin project edit, status select, drag-and-drop status board, task assignment, assignee updates, and deletion
-- Employee dashboard limited to assigned projects/tasks with task status updates
-- Dashboard metrics for active work, completion rate, overdue work, task status distribution, and project health
-- REST API with JWT auth, RBAC middleware, SQLite database, Sequelize relationships, and seeded demo data
-- Railway-ready production serving of the Vite build from Express
+- **Advanced Branding**: New identity as "TASKMAN" with a professional transparent flying-man logo integrated throughout the platform.
+- **Secure Authentication**: 
+  - Dual-mode (Login/Signup) panel with role selection (Admin/Employee).
+  - **Company ID Verification**: New mandatory security layer requiring a company-issued ID for all new signups.
+- **Role-Based Access Control (RBAC)**:
+  - **Admins**: Full management of the project portfolio, team staffing, and task delegation.
+  - **Employees**: Focused "My Work" view limited to assigned projects and tasks to ensure maximum productivity.
+- **Dynamic Project Governance**:
+  - **Member Invitation**: Admins can invite team members via email directly from the Projects page.
+  - **Interactive Kanban Board**: Visual task tracking with status-specific columns and real-time updates.
+  - **Project Portfolio**: Management-level view of all active work streams.
+- **Real-Time Analytics**: 
+  - Automated dashboard metrics for completion rates, overdue work, and overall project health.
+  - Live activity feed tracking project and task lifecycle events.
+- **Responsive UI**: Premium "Light Theme" design with dynamic page headers and high-contrast accessibility.
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- Frontend: React, Vite, Lucide icons, custom responsive CSS
-- Backend: Node.js, Express, Sequelize
-- Database: SQLite
-- Auth: bcrypt password hashing and JWT sessions
+- **Frontend**: React.js with `react-router-dom` for multi-page navigation.
+- **Styling**: Vanilla CSS with a custom design system and Lucide-React icons.
+- **Backend**: Node.js & Express.
+- **Database**: SQLite with Sequelize ORM for persistent data management.
+- **Security**: JWT (JSON Web Tokens) for session management and Bcrypt for password hashing.
 
-## Demo Accounts
+## 📦 Getting Started
 
-All seeded demo accounts use this password:
+### Prerequisites
+- Node.js (v16+)
+- npm
 
-```txt
-Taskflow@123
-```
+### Installation
 
-| Role | Email |
-| --- | --- |
-| Admin | admin@taskflow.dev |
-| Employee | maya@taskflow.dev |
-| Employee | rahul@taskflow.dev |
-| Employee | nina@taskflow.dev |
+1. **Backend Setup**:
+   ```bash
+   cd server
+   npm install
+   npm start
+   ```
 
-## Local Setup
+2. **Frontend Setup**:
+   ```bash
+   cd client
+   npm install
+   npm run dev
+   ```
 
-```bash
-npm run install:all
-npm --prefix client run build
-npm start
-```
+3. **Access**:
+   Open `http://localhost:5173` in your browser.
 
-Open `http://localhost:8080`.
-
-For development:
-
-```bash
-npm --prefix server run dev
-npm --prefix client run dev
-```
-
-The Vite client proxies `/api` to `http://localhost:8080`.
-
-## Environment Variables
-
-```txt
-PORT=8080
-JWT_SECRET=replace-with-a-long-secret
-SQLITE_PATH=optional/custom/path/taskflow.sqlite
-SEED_DEMO=true
-```
-
-Set `SEED_DEMO=false` to start with an empty database.
-
-## REST API Summary
-
-- `POST /api/auth/signup`
-- `POST /api/auth/login`
-- `GET /api/auth/me`
-- `GET /api/dashboard`
-- `GET /api/users?role=MEMBER`
-- `GET /api/projects`
-- `POST /api/projects`
-- `PUT /api/projects/:id`
-- `DELETE /api/projects/:id`
-- `POST /api/projects/:id/tasks`
-- `PUT /api/tasks/:id`
-- `DELETE /api/tasks/:id`
-
-## Railway Deployment
-
-1. Push this folder to GitHub.
-2. Create a new Railway project from the GitHub repository.
-3. Set `JWT_SECRET` in Railway Variables.
-4. Railway uses `railway.toml`:
-   - Build: `npm run install:all && npm run build`
-   - Start: `npm start`
-5. After deployment, submit the live Railway URL, GitHub repo URL, README, and a 2-5 minute demo video.
-
-For persistence on Railway, attach a volume and set `SQLITE_PATH` to a path inside the mounted volume.
+## 📋 Credentials
+For testing purposes, the following roles are available:
+- **Admin**: `admin@taskflow.dev` (Password: `Taskflow@123`)
+- **Employee**: `maya@taskflow.dev` (Password: `Taskflow@123`)
