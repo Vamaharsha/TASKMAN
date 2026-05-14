@@ -4,35 +4,44 @@ TASKMAN is a premium, full-stack project governance and team management platform
 
 ## 🚀 Key Features
 
-- **Advanced Branding**: New identity as "TASKMAN" with a professional transparent flying-man logo integrated throughout the platform.
-- **Secure Authentication**: 
-  - Dual-mode (Login/Signup) panel with role selection (Admin/Employee).
-  - **Company ID Verification**: New mandatory security layer requiring a company-issued ID for all new signups.
-- **Role-Based Access Control (RBAC)**:
-  - **Admins**: Full management of the project portfolio, team staffing, and task delegation.
-  - **Employees**: Focused "My Work" view limited to assigned projects and tasks to ensure maximum productivity.
-- **Dynamic Project Governance**:
-  - **Member Invitation**: Admins can invite team members via email directly from the Projects page.
-  - **Interactive Kanban Board**: Visual task tracking with status-specific columns and real-time updates.
-  - **Project Portfolio**: Management-level view of all active work streams.
-- **Real-Time Analytics**: 
-  - Automated dashboard metrics for completion rates, overdue work, and overall project health.
-  - Live activity feed tracking project and task lifecycle events.
-- **Responsive UI**: Premium "Light Theme" design with dynamic page headers and high-contrast accessibility.
+### 💎 Premium Interface & UX
+- **Modern Aesthetic**: A sleek "Light Theme" design utilizing glassmorphism, subtle shadows, and a professional monochrome palette with vibrant accent colors.
+- **Dynamic Headers**: Context-aware page headers that change automatically (e.g., "Project Portfolio", "Task Management") as you navigate the workspace.
+- **Responsive Layout**: A fully adaptive interface featuring a persistent sidebar (Rail Navigation) for seamless transitions between sections.
+- **Advanced Branding**: Integrated "TASKMAN" identity with a custom transparent flying-man logo and premium Syne typography.
+
+### 📊 Intelligent Dashboard
+- **Real-Time Analytics**: Instant visibility into critical KPIs:
+  - **Completion Rate**: Dynamic calculation of overall team productivity.
+  - **Overdue Work**: Automatic flagging of tasks past their deadline.
+  - **Active Workload**: Tracking of all projects currently under progress.
+- **Project Health Monitoring**: High-level status distribution (Not Started, In Progress, Blocked, Done) to identify risks at a glance.
+- **Activity Feed**: A live chronological log of all platform events, including project creation, task assignments, and status changes.
+
+### 🛡️ Project Governance (Admin)
+- **Member Invitation**: Effortlessly scale your team by inviting members via email address directly into the workspace.
+- **Portfolio Management**: Create, edit, and archive projects with detailed metadata (Type, Priority, Deadlines).
+- **Kanban Task Board**: A drag-and-drop style interface for moving tasks through the delivery pipeline.
+- **Resource Allocation**: Assign specific team members to projects and tasks with granular control.
+- **Company ID Verification**: A secure signup hurdle requiring a company-authorized ID to prevent unauthorized access.
+
+### 🏃 Employee Experience
+- **Focused Queue**: A personalized "My Work" view that hides management complexity and highlights immediate task priorities.
+- **Task Lifecycle**: Simple status toggling (To Do, In Progress, Done) allowing employees to signal progress without friction.
+- **Collaboration**: Direct visibility into project team members and shared deadlines.
 
 ## 🛠 Tech Stack
 
-- **Frontend**: React.js with `react-router-dom` for multi-page navigation.
-- **Styling**: Vanilla CSS with a custom design system and Lucide-React icons.
+- **Frontend**: React.js with `react-router-dom` for SPA routing.
+- **Styling**: Vanilla CSS with custom property variables and Lucide-React icons.
 - **Backend**: Node.js & Express.
-- **Database**: SQLite with Sequelize ORM for persistent data management.
-- **Security**: JWT (JSON Web Tokens) for session management and Bcrypt for password hashing.
+- **Database**: SQLite with Sequelize ORM.
+- **Security**: JWT session management & Bcrypt hashing.
 
 ## 📦 Getting Started
 
 ### Prerequisites
 - Node.js (v16+)
-- npm
 
 ### Installation
 
@@ -49,9 +58,6 @@ TASKMAN is a premium, full-stack project governance and team management platform
    npm install
    npm run dev
    ```
-
-3. **Access**:
-   Open `http://localhost:5173` in your browser.
 
 ## 📋 Credentials
 For testing purposes, the following roles are available:
